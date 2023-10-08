@@ -1,4 +1,4 @@
 package com.durys.jakub.leaverequests.request.domain
 
-internal class LeaveRequest(val authorId: AuthorId, val period: Period, val type: LeaveRequestType) {
+internal class LeaveRequest(private val authorId: AuthorId, private val period: Period, private val type: LeaveRequestType) {
 }
