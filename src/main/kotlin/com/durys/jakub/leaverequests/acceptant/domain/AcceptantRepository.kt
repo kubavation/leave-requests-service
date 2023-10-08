@@ -1,4 +1,4 @@
-package com.durys.jakub.leaverequests.acceptant
+package com.durys.jakub.leaverequests.acceptant.domain
 
 import com.durys.jakub.leaverequests.request.domain.LeaveRequest
 
