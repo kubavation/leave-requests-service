@@ -1,4 +1,4 @@
-package com.durys.jakub.leaverequests.requests
+package com.durys.jakub.leaverequests.request.domain
 
 import com.durys.jakub.leaverequests.request.domain.AuthorId
 import com.durys.jakub.leaverequests.request.domain.LeaveRequest
