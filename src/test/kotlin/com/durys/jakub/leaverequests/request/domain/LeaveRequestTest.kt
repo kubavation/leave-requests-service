@@ -1,6 +1,6 @@
 package com.durys.jakub.leaverequests.request.domain
 
-import com.durys.jakub.leaverequests.request.domain.vo.AuthorId
+import com.durys.jakub.leaverequests.request.domain.vo.ApplicantId
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestType
 import com.durys.jakub.leaverequests.request.domain.vo.Period
 import org.junit.jupiter.api.Test
@@ -13,7 +13,7 @@ class LeaveRequestTest {
     @Test
     fun createLeaveRequest_shouldSuccessfullyCreateRequest() {
         assertDoesNotThrow {
-            LeaveRequest(AuthorId(UUID.randomUUID()), Period(LocalDate.now(), LocalDate.now().plusDays(1)), LeaveRequestType.ANNUAL_LEAVE)
+            LeaveRequest(ApplicantId(UUID.randomUUID()), Period(LocalDate.now(), LocalDate.now().plusDays(1)), LeaveRequestType.ANNUAL_LEAVE)
         }
     }
 }
