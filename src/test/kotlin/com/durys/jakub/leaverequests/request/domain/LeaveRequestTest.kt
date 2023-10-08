@@ -1,9 +1,8 @@
 package com.durys.jakub.leaverequests.request.domain
 
-import com.durys.jakub.leaverequests.request.domain.AuthorId
-import com.durys.jakub.leaverequests.request.domain.LeaveRequest
-import com.durys.jakub.leaverequests.request.domain.LeaveRequestType
-import com.durys.jakub.leaverequests.request.domain.Period
+import com.durys.jakub.leaverequests.request.domain.vo.AuthorId
+import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestType
+import com.durys.jakub.leaverequests.request.domain.vo.Period
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import java.time.LocalDate

@@ -1,6 +1,7 @@
 package com.durys.jakub.leaverequests.request.domain
 
 import com.durys.jakub.leaverequests.request.domain.exception.InvalidLeaveRequestPeriod
+import com.durys.jakub.leaverequests.request.domain.vo.Period
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
