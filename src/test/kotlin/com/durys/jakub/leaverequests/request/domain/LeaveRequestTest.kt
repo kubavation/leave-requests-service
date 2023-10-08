@@ -1,6 +1,6 @@
 package com.durys.jakub.leaverequests.request.domain
 
-import com.durys.jakub.leaverequests.request.domain.vo.ApplicantId
+import com.durys.jakub.leaverequests.applicant.domain.ApplicantId
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestType
 import com.durys.jakub.leaverequests.request.domain.vo.Period
 import org.junit.jupiter.api.Test

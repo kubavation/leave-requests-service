@@ -1,4 +1,4 @@
-package com.durys.jakub.leaverequests.request.domain.vo
+package com.durys.jakub.leaverequests.applicant.domain
 
 import java.util.UUID
 
