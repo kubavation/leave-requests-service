@@ -17,8 +17,8 @@ internal class LeaveEntitlementsConfiguration {
     }
 
     @Bean
-    fun leaveEntitlementsRepository(webClientBuilder: WebClient.Builder): LeaveEntitlementsRepository {
-        return RestLeaveEntitlementsRepository(webClientBuilder.baseUrl("/api/leave-entitlements").build())
+    fun leaveEntitlementsRepository(leaveEntitlementsClient: WebClient.Builder): LeaveEntitlementsRepository {
+        return RestLeaveEntitlementsRepository(leaveEntitlementsClient.baseUrl("/api/leave-entitlements").build())
     }
 
 }

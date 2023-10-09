@@ -17,8 +17,8 @@ internal class AcceptationConfiguration {
     }
 
     @Bean
-    fun acceptantRepository(webClientBuilder: WebClient.Builder): AcceptantRepository {
-        return RestAcceptantRepository(webClientBuilder.baseUrl("/api/acceptation").build())
+    fun acceptantRepository(acceptationClient: WebClient.Builder): AcceptantRepository {
+        return RestAcceptantRepository(acceptationClient.baseUrl("/api/acceptation").build())
     }
 
 }
