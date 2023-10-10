@@ -10,7 +10,7 @@ internal data class LeaveRequest(val applicantId: ApplicantId, val settlement: S
 
 
     fun validWith(entitlements: LeaveEntitlements): Either<RuntimeException, LeaveRequest> {
-        if (entitlements.days.compareTo(settlement.period.amount()) > 0) { //todo explare domain
+        if (entitlements.days > settlement.period.amount()) { //todo explare domain
             return Either.Left(RuntimeException("Invalid number of days"));
         }
         return Either.Right(this)
