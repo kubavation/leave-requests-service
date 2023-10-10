@@ -1,4 +1,4 @@
-package com.durys.jakub.leaverequests.request
+package com.durys.jakub.leaverequests.request.domain
 
 import com.durys.jakub.leaverequests.request.domain.vo.DailyPeriod
 import com.durys.jakub.leaverequests.request.domain.vo.HourlyPeriod
