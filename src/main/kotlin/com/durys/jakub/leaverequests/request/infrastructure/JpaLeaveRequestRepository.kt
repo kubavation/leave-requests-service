@@ -4,9 +4,7 @@ import com.durys.jakub.leaverequests.request.domain.LeaveRequest
 import com.durys.jakub.leaverequests.request.domain.LeaveRequestId
 import com.durys.jakub.leaverequests.request.domain.LeaveRequestRepository
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
-import org.springframework.stereotype.Component
 
-@Component
 internal class JpaLeaveRequestRepository(val namedParameterJdbcTemplate: NamedParameterJdbcTemplate): LeaveRequestRepository {
 
     override fun load(id: LeaveRequestId): LeaveRequest? {
