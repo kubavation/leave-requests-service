@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component
 import java.time.LocalDate
 
 @Component
-class LeaveRequestApplicationService(private val leaveRequestRepository: LeaveRequestRepository,
+internal class LeaveRequestApplicationService(
+        private val leaveRequestRepository: LeaveRequestRepository,
         private val identityProvider: IdentityProvider) {
 
     internal fun submit(applicantId: ApplicantId, leaveRequestType: LeaveRequestType,
