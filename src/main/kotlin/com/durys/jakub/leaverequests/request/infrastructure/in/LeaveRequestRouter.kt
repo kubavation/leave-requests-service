@@ -12,7 +12,7 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import java.util.*
 
 @Configuration
-internal class LeaveRequestController {
+internal class LeaveRequestRouter {
 
     @Bean
     fun router(leaveRequestApplicationService: LeaveRequestApplicationService)
