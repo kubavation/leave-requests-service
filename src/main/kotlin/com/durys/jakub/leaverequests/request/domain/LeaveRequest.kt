@@ -13,6 +13,24 @@ internal data class LeaveRequest(val requestId: LeaveRequestId, val applicantId:
         this.status = status
     }
 
-    private var status: Status = Status.NEW
+    private var status: Status = Status.SUBMITTED
+
+
+
+    fun markAsSent() {
+        status = Status.SENT_FOR_ACCEPTATION
+    }
+
+    fun markAsRejected() {
+        status = Status.REJECTED
+    }
+
+    fun markAsAccepted() {
+        status = Status.ACCEPTED
+    }
+
+    fun markAsCanceled() {
+        status = Status.CANCELLED
+    }
 
 }
