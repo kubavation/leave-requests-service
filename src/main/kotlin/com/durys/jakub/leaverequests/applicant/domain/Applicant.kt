@@ -16,7 +16,7 @@ internal class Applicant(private val id: ApplicantId) {
         return SubmittedLeaveRequest(LeaveRequestInformation(request.id, request.type, Settlement.daily(request.from, request.to)), id, request.alternateId)
     }
 
-    fun sentForAcceptation(request: SubmittedLeaveRequest): SentForAcceptationLeaveRequest {
+    fun sendForAcceptation(request: SubmittedLeaveRequest): SentForAcceptationLeaveRequest {
         val acceptantId = AcceptantId(UUID.randomUUID()) //todo find acceptantId
         return request.sendForAcceptation(acceptantId)
     }
