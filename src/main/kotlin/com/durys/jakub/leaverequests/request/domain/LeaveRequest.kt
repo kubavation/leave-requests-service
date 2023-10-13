@@ -1,36 +1,11 @@
 package com.durys.jakub.leaverequests.request.domain
 
-import com.durys.jakub.leaverequests.applicant.domain.ApplicantId
-import com.durys.jakub.leaverequests.request.domain.vo.AlternateId
-import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestType
+internal interface LeaveRequest {
 
-internal data class LeaveRequest(val requestId: LeaveRequestId, val applicantId: ApplicantId, val settlement: Settlement,
-                                 val type: LeaveRequestType, val alternateId: AlternateId? = null) {
+    fun information(): LeaveRequestInformation
 
-    constructor(requestId: LeaveRequestId, applicantId: ApplicantId, settlement: Settlement,
-                type: LeaveRequestType, alternateId: AlternateId?, status: Status)
-                        : this(requestId, applicantId, settlement, type, alternateId) {
-        this.status = status
-    }
+    fun settlement() = information().settlement
 
-    private var status: Status = Status.SUBMITTED
-
-
-
-    fun markAsSent() {
-        status = Status.SENT_FOR_ACCEPTATION
-    }
-
-    fun markAsRejected() {
-        status = Status.REJECTED
-    }
-
-    fun markAsAccepted() {
-        status = Status.ACCEPTED
-    }
-
-    fun markAsCanceled() {
-        status = Status.CANCELLED
-    }
+    fun id() = information().id
 
 }
