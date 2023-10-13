@@ -1,6 +1,7 @@
 package com.durys.jakub.leaverequests.request.application
 
 import com.durys.jakub.leaverequests.applicant.domain.ApplicantId
+import com.durys.jakub.leaverequests.applicant.domain.ApplicantRepository
 import com.durys.jakub.leaverequests.common.OperationResult
 import com.durys.jakub.leaverequests.entitlements.domain.LeaveEntitlementsId
 import com.durys.jakub.leaverequests.entitlements.domain.LeaveEntitlementsRepository
@@ -19,13 +20,15 @@ import java.time.LocalDate
 internal class LeaveRequestApplicationService(
         private val leaveRequestRepository: LeaveRequestRepository,
         private val leaveEntitlementsRepository: LeaveEntitlementsRepository,
+        private val applicantRepository: ApplicantRepository,
         private val identityProvider: IdentityProvider) {
 
     internal fun submit(applicantId: ApplicantId, leaveRequestType: LeaveRequestType,
                         from: LocalDate, to: LocalDate, alternateId: AlternateId?): Mono<OperationResult> {
 
         return leaveEntitlementsRepository.load(LeaveEntitlementsId(applicantId, leaveRequestType, LocalDate.now()))
-                .zipWith(LeaveRequestFactory.create(identityProvider, applicantId, from,  to, leaveRequestType, alternateId))
+                .zipWith(applicantRepository.load(applicantId)
+                        .map { it.submit(WorkingLeaveRequest(LeaveRequestId(identityProvider.next()), leaveRequestType, from, to, alternateId)) })
                 .map { it.t1.valid(it.t2) }
                 .doOnError { throw RuntimeException("failed to load leave entitlements") }
                 .map {
