@@ -8,4 +8,6 @@ internal interface LeaveRequest {
 
     fun id() = information().id
 
+    fun type() = information().type
+
 }
