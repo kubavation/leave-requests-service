@@ -2,7 +2,7 @@ package com.durys.jakub.leaverequests.applicant.domain
 
 import com.durys.jakub.leaverequests.acceptant.domain.AcceptantId
 import com.durys.jakub.leaverequests.request.domain.*
-import com.durys.jakub.leaverequests.request.domain.LeaveRequestInformation
+import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestInformation
 import com.durys.jakub.leaverequests.request.domain.SentForAcceptationLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.SubmittedLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.WorkingLeaveRequest

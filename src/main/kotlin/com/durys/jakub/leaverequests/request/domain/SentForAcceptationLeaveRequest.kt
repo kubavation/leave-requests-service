@@ -1,6 +1,7 @@
 package com.durys.jakub.leaverequests.request.domain
 
 import com.durys.jakub.leaverequests.acceptant.domain.AcceptantId
+import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestInformation
 
 internal class SentForAcceptationLeaveRequest(private val information: LeaveRequestInformation, private val acceptantId: AcceptantId): LeaveRequest {
 
