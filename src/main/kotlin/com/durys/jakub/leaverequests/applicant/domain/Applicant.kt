@@ -3,9 +3,9 @@ package com.durys.jakub.leaverequests.applicant.domain
 import com.durys.jakub.leaverequests.acceptant.domain.AcceptantId
 import com.durys.jakub.leaverequests.request.domain.*
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestInformation
-import com.durys.jakub.leaverequests.request.domain.SentForAcceptationLeaveRequest
-import com.durys.jakub.leaverequests.request.domain.SubmittedLeaveRequest
-import com.durys.jakub.leaverequests.request.domain.WorkingLeaveRequest
+import com.durys.jakub.leaverequests.request.domain.flow.SentForAcceptationLeaveRequest
+import com.durys.jakub.leaverequests.request.domain.flow.SubmittedLeaveRequest
+import com.durys.jakub.leaverequests.request.domain.flow.WorkingLeaveRequest
 import java.util.*
 
 internal class Applicant(private val id: ApplicantId) {

@@ -1,4 +1,4 @@
-package com.durys.jakub.leaverequests.request.domain
+package com.durys.jakub.leaverequests.request.domain.vo
 
 import java.util.*
 

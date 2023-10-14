@@ -1,10 +1,10 @@
 package com.durys.jakub.leaverequests.acceptant.domain
 
 import arrow.core.Either
-import com.durys.jakub.leaverequests.request.domain.AcceptedLeaveRequest
-import com.durys.jakub.leaverequests.request.domain.RejectedLeaveRequest
-import com.durys.jakub.leaverequests.request.domain.RejectionReason
-import com.durys.jakub.leaverequests.request.domain.SentForAcceptationLeaveRequest
+import com.durys.jakub.leaverequests.request.domain.flow.AcceptedLeaveRequest
+import com.durys.jakub.leaverequests.request.domain.flow.RejectedLeaveRequest
+import com.durys.jakub.leaverequests.request.domain.vo.RejectionReason
+import com.durys.jakub.leaverequests.request.domain.flow.SentForAcceptationLeaveRequest
 import java.util.*
 
 internal class Acceptant(private val id: AcceptantId) {
