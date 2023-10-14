@@ -1,5 +1,7 @@
 package com.durys.jakub.leaverequests.request.domain
 
+import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestInformation
+
 internal interface LeaveRequest {
 
     fun information(): LeaveRequestInformation

@@ -1,8 +1,7 @@
-package com.durys.jakub.leaverequests.request.domain
+package com.durys.jakub.leaverequests.request.domain.vo
 
 import com.durys.jakub.leaverequests.applicant.domain.ApplicantId
-import com.durys.jakub.leaverequests.request.domain.vo.AlternateId
-import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestType
+import com.durys.jakub.leaverequests.request.domain.Settlement
 
 internal open class LeaveRequestInformation(val id: LeaveRequestId, val applicantId: ApplicantId, val type: LeaveRequestType,
                                             val settlement: Settlement, val alternateId: AlternateId? = null) {
