@@ -3,10 +3,9 @@ package com.durys.jakub.leaverequests.request.application
 import com.durys.jakub.leaverequests.applicant.domain.ApplicantId
 import com.durys.jakub.leaverequests.applicant.domain.ApplicantRepository
 import com.durys.jakub.leaverequests.common.OperationResult
-import com.durys.jakub.leaverequests.entitlements.domain.LeaveEntitlementsId
-import com.durys.jakub.leaverequests.entitlements.domain.LeaveEntitlementsRepository
+import com.durys.jakub.leaverequests.applicant.domain.LeaveEntitlementsId
+import com.durys.jakub.leaverequests.applicant.domain.LeaveEntitlementsRepository
 import com.durys.jakub.leaverequests.request.domain.*
-import com.durys.jakub.leaverequests.request.domain.LeaveRequest
 import com.durys.jakub.leaverequests.request.domain.LeaveRequestId
 import com.durys.jakub.leaverequests.request.domain.LeaveRequestRepository
 import com.durys.jakub.leaverequests.request.domain.vo.AlternateId
