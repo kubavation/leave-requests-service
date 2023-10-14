@@ -8,7 +8,7 @@ import com.durys.jakub.leaverequests.request.domain.flow.SubmittedLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.flow.WorkingLeaveRequest
 import java.util.*
 
-internal class Applicant(private val id: ApplicantId) {
+internal class Applicant(private val id: ApplicantId, private val information: ApplicantInformation, private val entitlements: List<LeaveEntitlements>) {
 
 
     fun submit(request: WorkingLeaveRequest): SubmittedLeaveRequest {
