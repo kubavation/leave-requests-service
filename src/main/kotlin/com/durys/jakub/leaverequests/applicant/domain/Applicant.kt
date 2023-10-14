@@ -13,7 +13,7 @@ internal class Applicant(private val id: ApplicantId) {
 
     fun submit(request: WorkingLeaveRequest): SubmittedLeaveRequest {
         //todo settlement factory
-        return SubmittedLeaveRequest(LeaveRequestInformation(request.id, request.type, Settlement.daily(request.from, request.to)), id, request.alternateId)
+        return SubmittedLeaveRequest(LeaveRequestInformation(request.id, id, request.type, Settlement.daily(request.from, request.to), request.alternateId))
     }
 
     fun sendForAcceptation(request: SubmittedLeaveRequest): SentForAcceptationLeaveRequest {
