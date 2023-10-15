@@ -4,7 +4,7 @@ import com.durys.jakub.leaverequests.request.domain.exception.InvalidLeaveReques
 import java.math.BigDecimal
 import java.time.LocalDate
 
-internal class DailyPeriod(private val from: LocalDate, private val to: LocalDate): Period {
+internal class DailyPeriod(private val from: LocalDate, private val to: LocalDate): Period<LocalDate> {
 
     init {
         if (from.isAfter(to)) {
@@ -14,5 +14,8 @@ internal class DailyPeriod(private val from: LocalDate, private val to: LocalDat
 
 
     override fun amount(): BigDecimal = (java.time.Period.between(from, to).days + 1).toBigDecimal()
+
+    override fun from() = from
+    override fun to() = to
 
 }
