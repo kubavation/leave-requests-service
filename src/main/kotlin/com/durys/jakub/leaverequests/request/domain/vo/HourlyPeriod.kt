@@ -8,4 +8,8 @@ internal class HourlyPeriod(private val from: LocalDateTime, private val to: Loc
 
     override fun amount(): BigDecimal = (java.time.Duration.between(from, to).toHours() + 1).toBigDecimal()
 
+    override fun from() = from
+
+    override fun to() = to
+
 }
