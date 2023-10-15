@@ -1,9 +1,10 @@
 package com.durys.jakub.leaverequests.request.domain.vo
 
 import java.math.BigDecimal
+import java.time.LocalDateTime
 
-interface Period<T> {
+interface Period {
     fun amount(): BigDecimal
-    fun from(): T
-    fun to(): T
+    fun from(): LocalDateTime
+    fun to(): LocalDateTime
 }
