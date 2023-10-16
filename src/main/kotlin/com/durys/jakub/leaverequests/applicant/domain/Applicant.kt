@@ -6,7 +6,6 @@ import com.durys.jakub.leaverequests.request.domain.flow.SentForAcceptationLeave
 import com.durys.jakub.leaverequests.request.domain.flow.SubmittedLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.flow.WorkingLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestInformation
-import com.durys.jakub.leaverequests.request.domain.vo.SettlementType
 import java.util.*
 
 internal class Applicant(private val id: ApplicantId,
