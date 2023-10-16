@@ -10,7 +10,12 @@ internal data class LeaveEntitlements(val entitlements: List<LeaveEntitlement>) 
     fun valid(requestType: LeaveRequestType, period: Period, settlement: SettlementType): Either<RuntimeException, Unit?> {
         findEntitlement(requestType, period)
                 ?.let {
-                    if (it.days > settlement.amountResolver.invoke(period)) {
+
+                    if (settlement === SettlementType.DAILY && it.days > settlement.amountResolver.invoke(period)) {
+                        return Either.Left(RuntimeException("Invalid number of days"));
+                    }
+
+                    if (settlement === SettlementType.HOURLY && it.hours > settlement.amountResolver.invoke(period)) {
                         return Either.Left(RuntimeException("Invalid number of days"));
                     }
 
