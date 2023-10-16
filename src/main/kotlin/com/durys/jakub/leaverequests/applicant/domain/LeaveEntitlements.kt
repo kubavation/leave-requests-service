@@ -21,7 +21,7 @@ internal data class LeaveEntitlements(val entitlements: List<LeaveEntitlement>) 
     }
 
     private fun findEntitlement(requestType: LeaveRequestType, period: Period): LeaveEntitlement? {
-        return entitlements.find { it.requestType == requestType}
+        return entitlements.find { it.requestType == requestType && (!period.to().isBefore(it.from) && !period.to().isAfter(it.to))}
     }
 
 }
