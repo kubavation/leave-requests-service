@@ -15,8 +15,10 @@ internal class Applicant(private val id: ApplicantId,
 
     fun submit(request: WorkingLeaveRequest): Either<RuntimeException, SubmittedLeaveRequest> {
 
-        return entitlements.valid(request.type, request.period, SettlementType.DAILY) //todo settlement
-                .map { SubmittedLeaveRequest(LeaveRequestInformation(request.id, id, request.type, request.period, SettlementType.DAILY, request.alternateId)) }
+        return entitlements.valid(request.type, request.period, request.settlementType)
+                .map {
+                    SubmittedLeaveRequest(LeaveRequestInformation(request.id, id, request.type, request.period,
+                            request.settlementType, request.alternateId)) }
     }
 
     fun sendForAcceptation(request: SubmittedLeaveRequest): SentForAcceptationLeaveRequest {
