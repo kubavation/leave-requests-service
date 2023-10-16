@@ -1,4 +1,4 @@
-package com.durys.jakub.leaverequests.request.domain
+package com.durys.jakub.leaverequests.request.domain.settlement
 
 import com.durys.jakub.leaverequests.applicant.domain.ApplicantId
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestType

@@ -13,19 +13,20 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 @Component
-internal class PeriodFactory(private val workingTimeScheduleRepository: WorkingTimeScheduleRepository,
-        private val leaveRequestService: LeaveRequestService) {
+internal class PeriodFactory(
+        private val workingTimeScheduleRepository: WorkingTimeScheduleRepository,
+        private val leaveRequestService: LeaveRequestSettlementService) {
 
 
     fun period(applicantId: ApplicantId, requestType: LeaveRequestType, from: LocalDate, to: LocalDate,
                timeFrom: LocalTime?, timeTo: LocalTime?): Mono<Period> {
 
         return leaveRequestService.hoursDefinitionRequired(applicantId, requestType, to)
-                .flatMap { createPeriod(applicantId, from, to, it, timeFrom, timeTo) }
+                .flatMap { resolve(applicantId, from, to, it, timeFrom, timeTo) }
     }
 
-    private fun createPeriod(applicantId: ApplicantId, from: LocalDate, to: LocalDate, hoursDefinitionRequired: Boolean,
-                             timeFrom: LocalTime?, timeTo: LocalTime?): Mono<Period> {
+    private fun resolve(applicantId: ApplicantId, from: LocalDate, to: LocalDate, hoursDefinitionRequired: Boolean,
+                        timeFrom: LocalTime?, timeTo: LocalTime?): Mono<Period> {
 
         if (hoursDefinitionRequired) {
             return Mono.just(HourlyPeriod(from, timeFrom!!, timeTo!!))
