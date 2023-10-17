@@ -14,4 +14,5 @@ internal class SentForAcceptationLeaveRequest(private val information: LeaveRequ
 
     override fun information(): LeaveRequestInformation = information
 
+    fun acceptantId() = acceptantId
 }

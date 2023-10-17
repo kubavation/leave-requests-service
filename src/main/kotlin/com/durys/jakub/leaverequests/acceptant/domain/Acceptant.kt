@@ -20,4 +20,6 @@ internal class Acceptant(private val id: AcceptantId) {
         return Either.Right(AcceptedLeaveRequest(request.information()))
     }
 
+    fun id() = id
+
 }
