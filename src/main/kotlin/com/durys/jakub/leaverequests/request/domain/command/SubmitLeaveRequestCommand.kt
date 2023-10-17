@@ -9,5 +9,4 @@ import java.time.LocalTime
 
 internal class SubmitLeaveRequestCommand(val applicantId: ApplicantId, val leaveRequestType: LeaveRequestType,
                                 val from: LocalDate, val to: LocalDate, val timeFrom: LocalTime?, val timeTo: LocalTime?,
-                                val alternateId: AlternateId?): Command {
-}
+                                val alternateId: AlternateId?): Command

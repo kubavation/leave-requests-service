@@ -6,7 +6,7 @@ import com.durys.jakub.leaverequests.common.OperationResult
 import com.durys.jakub.leaverequests.cqrs.command.CommandHandler
 import com.durys.jakub.leaverequests.request.domain.LeaveRequestRepository
 import com.durys.jakub.leaverequests.request.domain.command.SendLeaveRequestToAcceptationCommand
-import com.durys.jakub.leaverequests.request.domain.flow.FindSentForAcceptationLeaveRequest
+import com.durys.jakub.leaverequests.request.domain.flow.FindSubmittedLeaveRequest
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Mono
@@ -15,14 +15,14 @@ import reactor.core.publisher.Mono
 internal class SendLeaveRequestToAcceptationCommandHandler(
         private val applicantRepository: ApplicantRepository,
         private val acceptantRepository: AcceptantRepository,
-        private val findSentForAcceptationLeaveRequest: FindSentForAcceptationLeaveRequest,
+        private val findSubmittedLeaveRequest: FindSubmittedLeaveRequest,
         private val leaveRequestRepository: LeaveRequestRepository): CommandHandler<SendLeaveRequestToAcceptationCommand, Mono<OperationResult>> {
 
 
     @Transactional
     override fun handle(command: SendLeaveRequestToAcceptationCommand): Mono<OperationResult> {
 
-        return findSentForAcceptationLeaveRequest.find(command.requestId)
+        return findSubmittedLeaveRequest.find(command.requestId)
                 .flatMap { request ->
                     applicantRepository.load(request.information().applicantId)
                             .zipWith(acceptantRepository.load(request))
