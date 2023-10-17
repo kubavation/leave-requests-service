@@ -14,7 +14,7 @@ internal class Acceptant(private val id: AcceptantId, private val acceptationLev
         return RejectedLeaveRequest(request.information(), reason)
     }
 
-    fun approve(request: SentForAcceptationLeaveRequest): Either<SentForAcceptationLeaveRequest, AcceptedLeaveRequest> {
+    fun approve(request: SentForAcceptationLeaveRequest, acceptable: Boolean): Either<SentForAcceptationLeaveRequest, AcceptedLeaveRequest> {
         //todo find if exists acceptant (if exists return sentForAcceptationLeaveRequest)
         val acceptantId = AcceptantId(UUID.randomUUID())
 

@@ -17,4 +17,6 @@ internal interface LeaveRequest {
 
     fun level() = acceptation().acceptationLevel
     fun acceptant() = acceptation().acceptantId
+
+    fun applicant() = information().applicantId
 }
