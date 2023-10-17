@@ -1,4 +1,4 @@
-package com.durys.jakub.leaverequests.applicant.infrastructure
+package com.durys.jakub.leaverequests.applicant.infrastructure.workschedule
 
 import com.durys.jakub.leaverequests.applicant.domain.ApplicantId
 import com.durys.jakub.leaverequests.applicant.domain.workschedule.WorkingTimeSchedule
