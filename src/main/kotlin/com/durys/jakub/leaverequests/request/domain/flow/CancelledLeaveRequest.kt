@@ -9,6 +9,6 @@ internal class CancelledLeaveRequest(private val information: LeaveRequestInform
 
     override fun information(): LeaveRequestInformation = information
 
-    override fun acceptation() = acceptation
+    override fun acceptation() = Acceptation.default()
 
 }

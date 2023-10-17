@@ -6,11 +6,11 @@ import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestInformation
 import com.durys.jakub.leaverequests.request.domain.vo.RejectionReason
 
 internal class RejectedLeaveRequest(private val information: LeaveRequestInformation,
-                                    private val rejectionReason: RejectionReason {
+                                    private val rejectionReason: RejectionReason): LeaveRequest {
 
 
     override fun information(): LeaveRequestInformation = information
 
-    override fun acceptation() = acceptation
+    override fun acceptation() = Acceptation.default()
 
 }

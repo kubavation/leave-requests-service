@@ -15,7 +15,7 @@ internal class SubmittedLeaveRequest(private val information: LeaveRequestInform
     }
 
     fun sendForAcceptation(acceptantId: AcceptantId): SentForAcceptationLeaveRequest {
-        return SentForAcceptationLeaveRequest(information, acceptantId)
+        return SentForAcceptationLeaveRequest(information, acceptation().increment(acceptantId))
     }
 
 }
