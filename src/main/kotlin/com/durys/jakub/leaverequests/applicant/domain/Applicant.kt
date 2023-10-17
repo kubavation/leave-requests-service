@@ -17,8 +17,8 @@ internal class Applicant(private val id: ApplicantId,
 
         return entitlements.valid(request.type, request.period, request.settlementType)
                 .map {
-                    SubmittedLeaveRequest(LeaveRequestInformation(request.id, id, request.type, request.period,
-                            request.settlementType, request.alternateId)) }
+                    SubmittedLeaveRequest(
+                            LeaveRequestInformation(request.id, id, request.type, request.period, request.settlementType, request.alternateId)) }
     }
 
     fun sendForAcceptation(request: SubmittedLeaveRequest): SentForAcceptationLeaveRequest {

@@ -24,6 +24,7 @@ internal class LeaveRequestApplicationService(
         private val applicantRepository: ApplicantRepository,
         private val leaveRequestFactory: LeaveRequestFactory) {
 
+
     internal fun submit(applicantId: ApplicantId, leaveRequestType: LeaveRequestType,
                         from: LocalDate, to: LocalDate, timeFrom: LocalTime?, timeTo: LocalTime?,
                         alternateId: AlternateId?): Mono<OperationResult> { //todo refactor to command
