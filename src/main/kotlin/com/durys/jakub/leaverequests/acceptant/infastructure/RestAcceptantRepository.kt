@@ -20,7 +20,7 @@ internal class RestAcceptantRepository(private val client: WebClient): Acceptant
                         .path("/employees/{employeeId}")
                         .queryParam("at", LocalDate.now())
                         .queryParam("level", 1) //todo based on request
-                        .build(request.applicantId) }
+                        .build(request.information().applicantId.value) }
                 .retrieve()
                 .bodyToMono(Acceptant::class.java)
                 .onErrorResume { Mono.empty() }

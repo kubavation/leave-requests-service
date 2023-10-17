@@ -6,7 +6,6 @@ import com.durys.jakub.leaverequests.request.domain.flow.SentForAcceptationLeave
 import com.durys.jakub.leaverequests.request.domain.flow.SubmittedLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.flow.WorkingLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestInformation
-import java.util.*
 
 internal class Applicant(private val id: ApplicantId,
                          private val information: ApplicantInformation,
@@ -21,8 +20,7 @@ internal class Applicant(private val id: ApplicantId,
                             LeaveRequestInformation(request.id, id, request.type, request.period, request.settlementType, request.alternateId)) }
     }
 
-    fun sendForAcceptation(request: SubmittedLeaveRequest): SentForAcceptationLeaveRequest {
-        val acceptantId = AcceptantId(UUID.randomUUID()) //todo find acceptantId
+    fun sendForAcceptation(request: SubmittedLeaveRequest, acceptantId: AcceptantId): SentForAcceptationLeaveRequest {
         return request.sendForAcceptation(acceptantId)
     }
 }
