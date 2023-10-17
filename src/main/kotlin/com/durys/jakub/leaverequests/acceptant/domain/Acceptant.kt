@@ -5,9 +5,10 @@ import com.durys.jakub.leaverequests.request.domain.flow.AcceptedLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.flow.RejectedLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.vo.RejectionReason
 import com.durys.jakub.leaverequests.request.domain.flow.SentForAcceptationLeaveRequest
+import com.durys.jakub.leaverequests.sharedkernel.acceptation.AcceptationLevel
 import java.util.*
 
-internal class Acceptant(private val id: AcceptantId) {
+internal class Acceptant(private val id: AcceptantId, private val acceptationLevel: AcceptationLevel) {
 
     fun reject(request: SentForAcceptationLeaveRequest, reason: RejectionReason): RejectedLeaveRequest {
         return RejectedLeaveRequest(request.information(), reason)
