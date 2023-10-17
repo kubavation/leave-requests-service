@@ -22,5 +22,6 @@ internal class Acceptant(private val id: AcceptantId, private val acceptationLev
     }
 
     fun id() = id
+    fun level() = acceptationLevel
 
 }
