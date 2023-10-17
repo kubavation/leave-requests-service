@@ -1,9 +1,10 @@
 package com.durys.jakub.leaverequests.request.domain
 
+import com.durys.jakub.leaverequests.request.domain.flow.FindSentForAcceptationLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestId
 import reactor.core.publisher.Mono
 
-internal interface LeaveRequestRepository {
+internal interface LeaveRequestRepository: FindSentForAcceptationLeaveRequest {
     fun load(id: LeaveRequestId): Mono<LeaveRequest>
     fun save(leaveRequest: LeaveRequest)
 }
