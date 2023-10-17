@@ -1,11 +1,12 @@
 package com.durys.jakub.leaverequests.request.domain.flow
 
-import com.durys.jakub.leaverequests.acceptant.domain.AcceptantId
 import com.durys.jakub.leaverequests.request.domain.LeaveRequest
+import com.durys.jakub.leaverequests.request.domain.vo.Acceptation
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestInformation
 import com.durys.jakub.leaverequests.request.domain.vo.RejectionReason
 
-internal class SentForAcceptationLeaveRequest(private val information: LeaveRequestInformation, private val acceptantId: AcceptantId): LeaveRequest {
+internal class SentForAcceptationLeaveRequest(private val information: LeaveRequestInformation,
+                                              private val acceptation: Acceptation): LeaveRequest {
 
     fun reject(reason: RejectionReason): RejectedLeaveRequest {
         return RejectedLeaveRequest(information, reason)
@@ -14,5 +15,5 @@ internal class SentForAcceptationLeaveRequest(private val information: LeaveRequ
 
     override fun information(): LeaveRequestInformation = information
 
-    fun acceptantId() = acceptantId
+    override fun acceptation() = acceptation
 }

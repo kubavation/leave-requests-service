@@ -1,5 +1,6 @@
 package com.durys.jakub.leaverequests.request.domain
 
+import com.durys.jakub.leaverequests.request.domain.vo.Acceptation
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestInformation
 
 internal interface LeaveRequest {
@@ -12,4 +13,10 @@ internal interface LeaveRequest {
 
     fun type() = information().type
 
+    fun acceptation(): Acceptation
+
+    fun level() = acceptation().acceptationLevel
+    fun acceptant() = acceptation().acceptantId
+
+    fun applicant() = information().applicantId
 }

@@ -22,7 +22,7 @@ internal class SendLeaveRequestToAcceptationCommandHandler(
     @Transactional
     override fun handle(command: SendLeaveRequestToAcceptationCommand): Mono<OperationResult> {
 
-        return findSubmittedLeaveRequest.find(command.requestId)
+        return findSubmittedLeaveRequest.findSubmitted(command.requestId)
                 .flatMap { request ->
                     applicantRepository.load(request.information().applicantId)
                             .zipWith(acceptantRepository.load(request))
