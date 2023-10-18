@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.util.*
 
-internal class LeaveRequestAccepted(val personId: String, val leaveRequestType: LeaveRequestType,
+internal class LeaveRequestAccepted(val personId: UUID, val leaveRequestType: LeaveRequestType,
                            val from: LocalDate, val to: LocalDate,
                            val days: BigDecimal, val hours: BigDecimal,
                            val timeFrom: LocalTime?, val timeTo: LocalTime?): Event {
