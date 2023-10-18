@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 internal class EventsConfiguration {
 
     @Bean
-    fun eventPublisher(rabbitmTemplate: RabbitTemplate, @Value("\${queue.leave-entitlements}") queue: String): Events =
-            RabbitmqEventPublisher(rabbitmTemplate, queue)
+    fun eventPublisher(rabbitmqTemplate: RabbitTemplate, @Value("\${queue.leave-entitlements}") queue: String): Events =
+            RabbitmqEventPublisher(rabbitmqTemplate, queue)
 
 }
