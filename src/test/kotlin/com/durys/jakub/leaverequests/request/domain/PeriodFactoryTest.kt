@@ -131,4 +131,31 @@ class PeriodFactoryTest {
                 .verifyComplete()
     }
 
+    @Test
+    fun createHourlyPeriod_shouldThrowException_whenDatesAreNotWithinOneDay() {
+
+        val applicantId = ApplicantId(UUID.randomUUID())
+        val requestType = LeaveRequestType.ANNUAL_LEAVE
+        val from = LocalDate.of(2023, 1, 1)
+        val to = LocalDate.of(2023, 1, 2)
+        val timeFrom = LocalTime.of(8, 0)
+        val timeTo = LocalTime.of(10, 0)
+
+        Mockito.`when`(workingTimeScheduleRepository.workingTimeSchedule(applicantId, from, to)).then {
+            Flux.just(
+                    WorkingTimeSchedule(LocalDate.of(2023, 1, 1), LocalTime.of(8, 0), LocalTime.of(16, 0), false),
+            )
+        }
+
+        Mockito.`when`(leaveRequestSettlementService.hoursDefinitionRequired(applicantId, requestType, to)).then {
+            Mono.just(true)
+        }
+
+
+        StepVerifier
+                .create(periodFactory.period(applicantId, requestType, from, to, timeFrom, timeTo))
+                .expectErrorMatches { throwable -> throwable is RuntimeException } //todo
+                .verify()
+    }
+
 }
