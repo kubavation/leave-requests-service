@@ -24,7 +24,7 @@ internal class Acceptant(private val id: AcceptantId, private val acceptationLev
             return Either.Right(AcceptedLeaveRequest(request.information(), request.acceptation()))
         }
 
-        return Either.Right(SentForAcceptationLeaveRequest(request.information(), request.acceptation().increment(acceptantId));
+        return Either.Left(SentForAcceptationLeaveRequest(request.information(), request.acceptation().increment(acceptantId)))
     }
 
     fun id() = id
