@@ -2,6 +2,8 @@ package com.durys.jakub.leaverequests.applicant.domain
 
 import arrow.core.Either
 import com.durys.jakub.leaverequests.acceptant.domain.Acceptant
+import com.durys.jakub.leaverequests.request.domain.LeaveRequest
+import com.durys.jakub.leaverequests.request.domain.flow.CancelledLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.flow.SentForAcceptationLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.flow.SubmittedLeaveRequest
 import com.durys.jakub.leaverequests.request.domain.flow.WorkingLeaveRequest
@@ -22,5 +24,10 @@ internal class Applicant(private val id: ApplicantId,
 
     fun sendForAcceptation(request: SubmittedLeaveRequest, acceptant: Acceptant): SentForAcceptationLeaveRequest {
         return request.sendForAcceptation(acceptant.id())
+    }
+
+    fun cancel(request: LeaveRequest): CancelledLeaveRequest {
+        //todo validation
+        return CancelledLeaveRequest(request.information())
     }
 }
