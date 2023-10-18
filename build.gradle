@@ -34,6 +34,7 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'io.arrow-kt:arrow-core:1.2.0'
 	implementation 'io.arrow-kt:arrow-fx-coroutines:1.2.0'
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
