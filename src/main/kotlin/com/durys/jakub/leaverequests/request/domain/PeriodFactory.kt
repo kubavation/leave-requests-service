@@ -31,7 +31,7 @@ internal class PeriodFactory(
         if (hoursDefinitionRequired) {
 
             if (from != to) {
-                throw RuntimeException("TODO")
+                throw RuntimeException("Time from/to of hourly period cannot be the same")
             }
 
             return Mono.just(HourlyPeriod(from, timeFrom!!, timeTo!!))
@@ -40,5 +40,6 @@ internal class PeriodFactory(
         return WorkingTimeSchedule.calculate(workingTimeScheduleRepository.workingTimeSchedule(applicantId, from, to))
                 .map { DailyPeriod(from, to, it.days, it.hours) }
     }
+
 
 }

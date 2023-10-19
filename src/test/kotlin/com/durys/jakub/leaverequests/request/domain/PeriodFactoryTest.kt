@@ -154,7 +154,7 @@ class PeriodFactoryTest {
 
         StepVerifier
                 .create(periodFactory.period(applicantId, requestType, from, to, timeFrom, timeTo))
-                .expectErrorMatches { throwable -> throwable is RuntimeException } //todo
+                .expectErrorMessage("Time from/to of hourly period cannot be the same")
                 .verify()
     }
 
