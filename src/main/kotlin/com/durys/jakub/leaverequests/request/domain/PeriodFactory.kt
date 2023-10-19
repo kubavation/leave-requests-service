@@ -29,11 +29,6 @@ internal class PeriodFactory(
                         timeFrom: LocalTime?, timeTo: LocalTime?): Mono<Period> {
 
         if (hoursDefinitionRequired) {
-
-            if (from != to) {
-                throw RuntimeException("Time from/to of hourly period cannot be the same")
-            }
-
             return Mono.just(HourlyPeriod(from, timeFrom!!, timeTo!!))
         }
 

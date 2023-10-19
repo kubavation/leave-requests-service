@@ -132,14 +132,14 @@ class PeriodFactoryTest {
     }
 
     @Test
-    fun createHourlyPeriod_shouldThrowException_whenDatesAreNotWithinOneDay() {
+    fun createHourlyPeriod_shouldThrowException_whenTimeFromToAreTheSame() {
 
         val applicantId = ApplicantId(UUID.randomUUID())
         val requestType = LeaveRequestType.ANNUAL_LEAVE
         val from = LocalDate.of(2023, 1, 1)
-        val to = LocalDate.of(2023, 1, 2)
+        val to = LocalDate.of(2023, 1, 1)
         val timeFrom = LocalTime.of(8, 0)
-        val timeTo = LocalTime.of(10, 0)
+        val timeTo = LocalTime.of(8, 0)
 
         Mockito.`when`(workingTimeScheduleRepository.workingTimeSchedule(applicantId, from, to)).then {
             Flux.just(
@@ -154,7 +154,34 @@ class PeriodFactoryTest {
 
         StepVerifier
                 .create(periodFactory.period(applicantId, requestType, from, to, timeFrom, timeTo))
-                .expectErrorMessage("Time from/to of hourly period cannot be the same")
+                .expectErrorMessage("Time from/to in cannot be the same")
+                .verify()
+    }
+
+    @Test
+    fun createHourlyPeriod_shouldThrowException_whenTimeFromIsAfterTimeTo() {
+
+        val applicantId = ApplicantId(UUID.randomUUID())
+        val requestType = LeaveRequestType.ANNUAL_LEAVE
+        val from = LocalDate.of(2023, 1, 1)
+        val to = LocalDate.of(2023, 1, 1)
+        val timeFrom = LocalTime.of(8, 0)
+        val timeTo = LocalTime.of(7, 0)
+
+        Mockito.`when`(workingTimeScheduleRepository.workingTimeSchedule(applicantId, from, to)).then {
+            Flux.just(
+                    WorkingTimeSchedule(LocalDate.of(2023, 1, 1), LocalTime.of(8, 0), LocalTime.of(16, 0), false),
+            )
+        }
+
+        Mockito.`when`(leaveRequestSettlementService.hoursDefinitionRequired(applicantId, requestType, to)).then {
+            Mono.just(true)
+        }
+
+
+        StepVerifier
+                .create(periodFactory.period(applicantId, requestType, from, to, timeFrom, timeTo))
+                .expectErrorMessage("Time from cannot be later than time to")
                 .verify()
     }
 
