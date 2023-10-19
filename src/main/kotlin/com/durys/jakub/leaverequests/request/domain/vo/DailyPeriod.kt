@@ -8,8 +8,13 @@ internal class DailyPeriod(private val from: LocalDate, private val to: LocalDat
     : Period(from, to, null, null) {
 
     init {
+
         if (from.isAfter(to)) {
             throw InvalidLeaveRequestPeriod(from, to)
+        }
+
+        if (days == BigDecimal.ZERO || hours == BigDecimal.ZERO) {
+            throw RuntimeException("Invalid period based of working time schedule");
         }
     }
 

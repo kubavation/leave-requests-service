@@ -96,5 +96,33 @@ internal class DailyPeriodTest {
                 .verifyComplete()
     }
 
+    @Test
+    fun createDailyPeriod_shouldThrowException_whenAllDaysInPeriodAreDaysOff() {
+
+        val from = LocalDate.of(2023, 1, 1)
+        val to = LocalDate.of(2023, 1, 3)
+
+        Mockito.`when`(workingTimeScheduleRepository.workingTimeSchedule(applicantId, from, to)).then {
+            Flux.just(
+                    WorkingTimeSchedule(LocalDate.of(2023, 1, 1),
+                            LocalTime.of(8, 0), LocalTime.of(16, 0), false),
+                    WorkingTimeSchedule(LocalDate.of(2023, 1, 2),
+                            LocalTime.of(8, 0), LocalTime.of(15, 0), false),
+                    WorkingTimeSchedule(LocalDate.of(2023, 1, 3),
+                            LocalTime.of(8, 0), LocalTime.of(16, 0), false)
+            )
+        }
+
+        Mockito.`when`(leaveRequestSettlementService.hoursDefinitionRequired(applicantId, requestType, to)).then {
+            Mono.just(false)
+        }
+
+
+        StepVerifier
+                .create(periodFactory.period(applicantId, requestType, from, to, null, null))
+                .expectErrorMessage("Invalid period based of working time schedule")
+                .verify()
+    }
+
 
 }
