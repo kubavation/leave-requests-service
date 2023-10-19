@@ -29,7 +29,8 @@ internal class PeriodFactory(
                         timeFrom: LocalTime?, timeTo: LocalTime?): Mono<Period> {
 
         if (hoursDefinitionRequired) {
-            return Mono.just(HourlyPeriod(from, timeFrom!!, timeTo!!))
+            return workingTimeScheduleRepository.workingTimeSchedule(applicantId, from)
+                    .map { HourlyPeriod(from, timeFrom!!, timeTo!!, it) }
         }
 
         return WorkingTimeSchedule.calculate(workingTimeScheduleRepository.workingTimeSchedule(applicantId, from, to))
