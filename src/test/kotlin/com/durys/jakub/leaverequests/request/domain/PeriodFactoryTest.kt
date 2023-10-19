@@ -15,18 +15,20 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.util.UUID
 
-class PeriodFactoryTest {
+internal class PeriodFactoryTest {
 
     private val leaveRequestSettlementService: LeaveRequestSettlementService = Mockito.mock(LeaveRequestSettlementService::class.java)
     private val workingTimeScheduleRepository: WorkingTimeScheduleRepository = Mockito.mock(WorkingTimeScheduleRepository::class.java)
 
     private val periodFactory = PeriodFactory(workingTimeScheduleRepository, leaveRequestSettlementService)
 
+
+    private val applicantId = ApplicantId(UUID.randomUUID())
+    private val requestType = LeaveRequestType.ANNUAL_LEAVE
+
     @Test
     fun createDailyPeriod_shouldSuccessfullyCreateDailyPeriod_whenAllDaysAreWorking() {
 
-        val applicantId = ApplicantId(UUID.randomUUID())
-        val requestType = LeaveRequestType.ANNUAL_LEAVE
         val from = LocalDate.of(2023, 1, 1)
         val to = LocalDate.of(2023, 1, 2)
 
@@ -61,8 +63,6 @@ class PeriodFactoryTest {
     @Test
     fun createDailyPeriod_shouldSuccessfullyCreateDailyPeriod_whenNotAllDaysAreWorking() {
 
-        val applicantId = ApplicantId(UUID.randomUUID())
-        val requestType = LeaveRequestType.ANNUAL_LEAVE
         val from = LocalDate.of(2023, 1, 1)
         val to = LocalDate.of(2023, 1, 3)
 
@@ -99,8 +99,6 @@ class PeriodFactoryTest {
     @Test
     fun createHourlyPeriod_shouldSuccessfullyCreateHourlyPeriod() {
 
-        val applicantId = ApplicantId(UUID.randomUUID())
-        val requestType = LeaveRequestType.ANNUAL_LEAVE
         val from = LocalDate.of(2023, 1, 1)
         val to = LocalDate.of(2023, 1, 1)
         val timeFrom = LocalTime.of(8, 0)
@@ -134,8 +132,6 @@ class PeriodFactoryTest {
     @Test
     fun createHourlyPeriod_shouldThrowException_whenTimeFromToAreTheSame() {
 
-        val applicantId = ApplicantId(UUID.randomUUID())
-        val requestType = LeaveRequestType.ANNUAL_LEAVE
         val from = LocalDate.of(2023, 1, 1)
         val to = LocalDate.of(2023, 1, 1)
         val timeFrom = LocalTime.of(8, 0)
@@ -160,9 +156,7 @@ class PeriodFactoryTest {
 
     @Test
     fun createHourlyPeriod_shouldThrowException_whenTimeFromIsAfterTimeTo() {
-
-        val applicantId = ApplicantId(UUID.randomUUID())
-        val requestType = LeaveRequestType.ANNUAL_LEAVE
+        
         val from = LocalDate.of(2023, 1, 1)
         val to = LocalDate.of(2023, 1, 1)
         val timeFrom = LocalTime.of(8, 0)
