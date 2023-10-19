@@ -1,8 +1,10 @@
-package com.durys.jakub.leaverequests.request.domain
+package com.durys.jakub.leaverequests.request.domain.period
 
 import com.durys.jakub.leaverequests.applicant.domain.ApplicantId
 import com.durys.jakub.leaverequests.applicant.domain.workschedule.WorkingTimeSchedule
 import com.durys.jakub.leaverequests.applicant.domain.workschedule.WorkingTimeScheduleRepository
+import com.durys.jakub.leaverequests.request.domain.LeaveRequestSettlementService
+import com.durys.jakub.leaverequests.request.domain.PeriodFactory
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestType
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
