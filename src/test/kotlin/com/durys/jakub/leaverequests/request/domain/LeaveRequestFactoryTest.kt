@@ -5,6 +5,7 @@ import com.durys.jakub.leaverequests.applicant.domain.workschedule.WorkingTimeSc
 import com.durys.jakub.leaverequests.request.domain.settlement.SettlementRepository
 import com.durys.jakub.leaverequests.request.domain.settlement.SettlementType
 import com.durys.jakub.leaverequests.request.domain.vo.DailyPeriod
+import com.durys.jakub.leaverequests.request.domain.vo.HourlyPeriod
 import com.durys.jakub.leaverequests.request.domain.vo.LeaveRequestType
 import com.durys.jakub.leaverequests.sharedkernel.identityprovider.IdentityProvider
 import org.junit.jupiter.api.Assertions.*
@@ -56,6 +57,38 @@ internal class LeaveRequestFactoryTest {
                     assertEquals(expectedHours.toBigDecimal(), it.period.hours())
                     assertTrue(it.settlementType == SettlementType.DAILY)
                     assertTrue(it.period is DailyPeriod)
+                }
+                .verifyComplete()
+
+    }
+
+    @Test
+    fun createLeaveRequest_shouldSuccessfullyCreateRequestWithHourlyPeriod() {
+
+        val from = LocalDate.of(2023, 1, 1)
+        val to = LocalDate.of(2023, 1, 1)
+        val timeFrom = LocalTime.of(8, 0)
+        val timeTo = LocalTime.of(9, 0)
+
+        val expectedDays = 1L
+        val expectedHours = 1L
+
+        Mockito.`when`(identityProvider.next()).then { UUID.randomUUID() }
+
+        Mockito.`when`(periodFactory.period(applicantId, leaveRequestType, from, to, null, null))
+                .then { Mono.just(HourlyPeriod(from, timeFrom, timeTo)) }
+
+        Mockito.`when`(settlementRepository.resolve(applicantId, leaveRequestType, to))
+                .then { Mono.just(SettlementType.HOURLY) }
+
+
+        StepVerifier
+                .create(leaveRequestFactory.build(applicantId, leaveRequestType, from, to, null, null, null))
+                .consumeNextWith {
+                    assertEquals(expectedDays.toBigDecimal(), it.period.days())
+                    assertEquals(expectedHours.toBigDecimal(), it.period.hours())
+                    assertTrue(it.settlementType == SettlementType.HOURLY)
+                    assertTrue(it.period is HourlyPeriod)
                 }
                 .verifyComplete()
 
