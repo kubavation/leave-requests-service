@@ -10,4 +10,5 @@ internal class AggregatingValidationExceptionHandler: ValidationExceptionHandler
 
     fun errors(): List<String> = errors.map { it.message!! }
 
+    fun hasErrors() = errors.isNotEmpty()
 }
