@@ -3,6 +3,7 @@ package com.durys.jakub.leaverequests.request.domain.vo
 import com.durys.jakub.leaverequests.applicant.domain.workschedule.WorkingTimeSchedule
 import com.durys.jakub.leaverequests.common.exception.ValidationExceptionHandler
 import com.durys.jakub.leaverequests.common.exception.ValidationHandlers
+import org.springframework.boot.context.properties.bind.validation.ValidationErrors
 import java.math.BigDecimal
 import java.time.Duration
 import java.time.LocalDate
@@ -13,9 +14,7 @@ internal class HourlyPeriod(private val at: LocalDate, private val from: LocalTi
 
 
     constructor(at: LocalDate, from: LocalTime, to: LocalTime, schedule: WorkingTimeSchedule): this(at, from, to) {
-        if (!schedule.workingDay || from < schedule.from || to > schedule.to) {
-            throw RuntimeException("Invalid period based on working schedule")
-        }
+        test(from, to, schedule, ValidationHandlers.throwingValidationExceptionHandler())
     }
 
     init {
@@ -38,7 +37,13 @@ internal class HourlyPeriod(private val at: LocalDate, private val from: LocalTi
             if (from.isAfter(to)) {
                 handler.handle(RuntimeException("Time from cannot be later than time to"))
             }
+        }
 
+        fun test(from: LocalTime, to: LocalTime, schedule: WorkingTimeSchedule, handler: ValidationExceptionHandler) {
+
+            if (!schedule.workingDay || from < schedule.from || to > schedule.to) {
+                handler.handle(RuntimeException("Invalid period based on working schedule"))
+            }
         }
 
     }

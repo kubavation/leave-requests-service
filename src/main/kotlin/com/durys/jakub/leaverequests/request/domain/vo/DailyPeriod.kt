@@ -22,11 +22,11 @@ internal class DailyPeriod(private val from: LocalDate, private val to: LocalDat
         fun test(from: LocalDate, to: LocalDate, days: BigDecimal, hours: BigDecimal, handler: ValidationExceptionHandler) {
 
             if (from.isAfter(to)) {
-                throw InvalidLeaveRequestPeriod(from, to)
+                handler.handle(InvalidLeaveRequestPeriod(from, to))
             }
 
             if (days == BigDecimal.ZERO || hours == BigDecimal.ZERO) {
-                throw RuntimeException("Invalid period based of working time schedule");
+                handler.handle(RuntimeException("Invalid period based of working time schedule"))
             }
         }
     }
